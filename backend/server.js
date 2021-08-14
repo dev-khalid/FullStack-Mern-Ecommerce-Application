@@ -22,6 +22,8 @@ mongoose
 const app = express();
 
 app.use('/api/products', productRoutes);
+
+//** @desc: Handling unhandled routes */
 app.use(notFound);
 app.use(errorHandler);
 const port = process.env.port || 5000;
