@@ -22,11 +22,12 @@ const userSchema = mongoose.Schema({
     default: false
   }
 })
-userSchema.methods.matchPassword  = async function(enterdPassword) { 
-  return await bcrypt.compare(enterdPassword,this.password); 
+userSchema.methods.matchPassword = async function(enteredPassword) { 
+  return await bcrypt.compare(enteredPassword,this.password); 
 }
 userSchema.pre('save',async function(next) { 
   if(!this.isModified('password')) { 
+    //if the password field is not modified then we shouldn't call this function . 
     next(); 
   }
   this.password = await bcrypt.hash(this.password,10); 

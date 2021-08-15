@@ -3,6 +3,7 @@ import products from './data/products.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js'; 
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 dotenv.config();
 
@@ -20,8 +21,10 @@ mongoose
   });
 
 const app = express();
-
+//req.body parser 
+app.use(express.json()); 
 app.use('/api/products', productRoutes);
+app.use('/api/users',userRoutes);
 
 //** @desc: Handling unhandled routes */
 app.use(notFound);
